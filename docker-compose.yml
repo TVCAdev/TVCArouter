@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  tvca_router:
+    image: docker_tvca_router:latest
+    restart: always
+    environment:
+      WEBSOCKET_TOKEN: $WEBSOCKET_TOKEN
+      LINEBOT_URL: $LINEBOT_URL
+      WEBAPI_POST_MSG_URL: $WEBAPI_POST_MSG_URL
