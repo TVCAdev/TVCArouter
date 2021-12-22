@@ -4,7 +4,23 @@ services:
   tvca_router:
     image: docker_tvca_router:latest
     restart: always
+    networks:
+      - docker_net
     environment:
       WEBSOCKET_TOKEN: $WEBSOCKET_TOKEN
       LINEBOT_URL: $LINEBOT_URL
-      WEBAPI_POST_MSG_URL: $WEBAPI_POST_MSG_URL
+      WEBAPI_POST_MSG_URL: http://cam_webapi:5000/
+
+  cam_webapi:
+    image: docker_cam_webapi:latest
+    restart: always
+    networks:
+      - docker_net
+    devices:
+      - "/dev/video0:/dev/video0"
+
+networks:
+  docker_net:
+    driver: bridge
+    ipam:
+      driver: default
