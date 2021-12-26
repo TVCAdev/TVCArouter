@@ -12,7 +12,7 @@ const socket_client = io_client(process.env.LINEBOT_URL, {
     },
 });
 
-// websocket message recieve
+// websocket message receive
 socket_client.on("GET_LIVINGPIC", () => {
     console.log("GET_LIVINGPIC was accept...");
 
