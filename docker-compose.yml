@@ -9,7 +9,8 @@ services:
     environment:
       WEBSOCKET_TOKEN: $WEBSOCKET_TOKEN
       LINEBOT_URL: $LINEBOT_URL
-      WEBAPI_POST_MSG_URL: http://cam_webapi:5000/
+      WEBAPI_LIVPIC_MSG_URL: http://cam_webapi:5000/
+      CEC_CONTROL_DATAS: "[{\"name\":\"LIVING\",\"host\":\"cec_control_LIVING\",\"port\":\"3001\"},{\"name\":\"MAMA_ROOM\",\"host\":\"192.168.0.103\",\"port\":\"3001\"}]"
 
   cam_webapi:
     image: docker_cam_webapi:latest
@@ -18,6 +19,18 @@ services:
       - docker_net
     devices:
       - "/dev/video0:/dev/video0"
+
+  cec_control_LIVING:
+    image: docker_cec_control:latest
+    restart: always
+    networks:
+      - docker_net
+    environment:
+      CEC_CONTROL_HOST: "cec_control_LIVING"
+      CEC_CONTROL_PORT: "3001"
+      CEC_CONTROL_NAME: "LIVING"
+    devices:
+      - "/dev/vchiq:/dev/vchiq"
 
 networks:
   docker_net:

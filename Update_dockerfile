@@ -1,0 +1,8 @@
+FROM docker_tvca_router:latest
+
+ENV TOP_DIR /TVCArouter
+
+COPY tvca_router.js ${TOP_DIR}
+
+CMD ["/usr/local/bin/node","tvca_router.js"]
+
