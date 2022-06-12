@@ -13,7 +13,6 @@ services:
       CEC_CONTROL_PORT: "3001"
       CEC_CONTROL_NAME: "MAMA_ROOM"
     devices:
-      - "/dev/cec0:/dev/cec0"
       - "/dev/vchiq:/dev/vchiq"
 
 networks:
